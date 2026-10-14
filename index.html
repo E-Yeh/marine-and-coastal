@@ -17,6 +17,7 @@
   Everything except the optional Tableau dashboard is self-contained.
   No analytics, tracking, or live experiment are implemented here.
   -->
+
   <style>
     :root{--ink:#18383b;--muted:#506a6c;--paper:#f7f5ef;--white:#fffefa;--teal:#166b72;--mint:#dce9dc;--line:#d3dcd5;--orange:#e5aa65;--radius:16px;--max:1160px}
     *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}h1,h2,h3,p{margin-top:0}h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;line-height:1.08;letter-spacing:-.04em}h1{font-size:clamp(48px,7vw,86px);max-width:760px;margin-bottom:24px}h2{font-size:clamp(34px,4vw,52px);margin-bottom:20px}h3{font-size:20px;line-height:1.35}a{color:var(--teal);text-underline-offset:4px}a:hover{text-decoration-thickness:2px}button{font:inherit}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #c87827;outline-offset:5px}[hidden]{display:none!important}.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}.skip{position:absolute;top:-80px;left:20px;background:white;padding:12px;z-index:20}.skip:focus{top:10px}
@@ -31,15 +32,50 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header><div class="wrap nav"><a class="brand" href="#top"><span aria-hidden="true">≈</span> Ocean priorities</a><nav aria-label="Main navigation"><a href="#analysis">Exploratory analysis</a><a href="#dashboard">Dashboard</a><a href="#experiment">A/B test</a><a href="#sources">Sources</a></nav></div></header>
+
 <main id="main">
   <div class="hero" id="top">
     <svg class="ocean-lines" viewBox="0 0 600 450" aria-hidden="true" fill="none" stroke="#166b72" stroke-width="1.5"><ellipse cx="390" cy="200" rx="270" ry="195"/><ellipse cx="390" cy="200" rx="240" ry="173"/><ellipse cx="390" cy="200" rx="210" ry="151"/><ellipse cx="390" cy="200" rx="180" ry="129"/><ellipse cx="390" cy="200" rx="150" ry="107"/><ellipse cx="390" cy="200" rx="120" ry="85"/></svg>
     <div class="wrap hero-inner"><p class="eyebrow">Research portfolio · Marine &amp; coastal perceptions</p><h1>What matters most<br>when our oceans change?</h1><p class="lead">Exploring how survey respondents value oceans and coastlines, understand climate threats, and describe their concerns in their own words.</p><div class="buttons"><a class="button primary" href="#analysis">Explore the findings ↗</a><a class="button" href="#dashboard">View the dashboard</a></div><p class="meta"><span class="author" data-author></span>Survey analysis &nbsp; / &nbsp; Python &amp; Tableau &nbsp; / &nbsp; Experimental design</p></div>
     <div class="hero-band"><div class="wrap stats"><div class="stat"><strong>709</strong><span>Survey respondents</span><small>One record per respondent</small></div><div class="stat"><strong>41</strong><span>Named countries represented</span><small>Plus one unspecified response</small></div><div class="stat"><strong>87.2%</strong><span>Rate climate change a high or very high threat</span><small>Q7 · all 709 respondents</small></div></div></div>
   </div>
+
   <section id="analysis"><div class="wrap">
     <div class="section-top"><div><p class="number">01 / EXPLORATORY DATA ANALYSIS</p><h2>First, understand<br>who is speaking.</h2></div><p>The central question is what respondents prioritize about oceans and coastlines and the effects of climate change. The analysis connects sample composition, perceived threats, and open-text concerns.</p></div>
+
     <div class="grid">
+      <article class="card wide">
+  <span class="tag">Q15 × Q9 · GROUP COMPARISONS</span>
+
+  <h3>What concerns each ocean-user group?</h3>
+
+  <figure class="chart-figure">
+    <a
+      href="./concerns_heatmap.png"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Open the concern heatmap at full size"
+    >
+      <img
+        src="./concerns_heatmap.png"
+        alt="Heatmap comparing climate concerns across five ocean-user groups."
+        loading="lazy"
+      >
+    </a>
+
+    <figcaption>
+      Each cell shows the percentage within a group who selected
+      that concern. Multiple selections were allowed, so rows
+      do not total 100%. Click the image to view it at full size.
+    </figcaption>
+  </figure>
+
+  <p>
+    Extreme-weather changes were selected by 50.3% of tourists
+    and recreational users. Interpret comparisons cautiously:
+    the fishing and seafood-producer group has only 14 respondents.
+  </p>
+</article>
       <article class="card"><span class="tag">Q14 · SAMPLE COMPOSITION</span><h3>A geographically concentrated sample</h3><p>The five largest country groups account for <strong>78.1%</strong> of respondents. Their perspectives shape the overall results.</p><div role="group" aria-label="Share of all 709 respondents by country; bar scale is zero to 100 percent">
         <div class="bar-row"><div class="bar-label"><span>Italy</span><span>180 · 25.4%</span></div><div class="track" aria-hidden="true"><div class="fill" style="width:25.39%"></div></div></div>
         <div class="bar-row"><div class="bar-label"><span>France</span><span>134 · 18.9%</span></div><div class="track" aria-hidden="true"><div class="fill" style="width:18.9%"></div></div></div>
@@ -51,12 +87,15 @@
       <article class="card"><span class="tag">Q7 · PERCEIVED THREATS</span><h3>Climate change is widely seen as serious</h3><p>Overall, <strong>618 of 709 respondents</strong> rate climate change as a high or very high threat to marine and coastal ecosystems.</p><div class="table-wrap"><table><caption class="small">High + very high ratings for climate change</caption><thead><tr><th scope="col">Sample</th><th scope="col">n</th><th scope="col">Share</th></tr></thead><tbody><tr><th scope="row">Overall</th><td>709</td><td>87.2%</td></tr><tr><th scope="row">Italy</th><td>180</td><td>88.9%</td></tr><tr><th scope="row">France</th><td>134</td><td>79.1%</td></tr><tr><th scope="row">Ireland</th><td>115</td><td>88.7%</td></tr><tr><th scope="row">United Kingdom</th><td>75</td><td>96.0%</td></tr><tr><th scope="row">Spain</th><td>50</td><td>94.0%</td></tr></tbody></table></div><p class="chart-note">Denominators include “I don’t know.” Country comparisons are descriptive; these are not representative national estimates.</p></article>
       <article class="card wide"><span class="tag">Q5 · QUALITATIVE SAMPLE REVIEW</span><h3>Environmental concerns also have human consequences.</h3><p>Reading 60 randomly sampled records revealed recurring environmental themes and concerns about health, livelihoods, migration, and inequality. These themes can overlap within a person’s answers.</p><div class="theme-grid"><div class="theme"><h3>Water and coastal disruption</h3><p><strong>41 of 60 records · 68.3%</strong><br>Drought, flooding, sea-level rise, and erosion point to different forms of water-related disruption.</p><blockquote class="quote">“Drought and flood”</blockquote><p class="quote-ref">Excel row 321 · Q5_1</p></div><div class="theme"><h3>Biodiversity and ecosystems</h3><p><strong>27 of 60 records · 45.0%</strong><br>Loss, extinction, and habitat degradation feature alongside broader ecological change.</p><blockquote class="quote">“Habitat degradation”</blockquote><p class="quote-ref">Excel row 328 · Q5_3</p></div><div class="theme"><h3>Human and social impacts</h3><p><strong>16 of 60 records · 26.7%</strong><br>Concerns include unequal impacts and threats to wellbeing. One assignment is uncertain.</p><blockquote class="quote">“Impact on poorest”</blockquote><p class="quote-ref">Excel row 56 · Q5_3</p></div></div><details class="method"><summary>How the text sample was selected and coded</summary><p>From 706 records with at least one nonblank Q5 answer, 60 were selected without replacement using pandas <code>sample(n=60, random_state=42)</code>. All three Q5 fields were read: 153 nonblank answers in total. Each record was assigned manually reviewed, overlapping topic codes once per theme. These are assistant-assisted exploratory codes, not independently validated qualitative measurements.</p><p>The coding drew on the earlier exploratory review. One record contained only place names and was left unassigned. The ambiguous answer “Death” was included under human impacts; excluding it reduces that theme to 15/60 (25.0%). Row references count the spreadsheet header as row 1.</p><p><strong>Counterexamples:</strong> row 111 lists both “Excessive cold” and “Excessive heat,” complicating a warming-only interpretation. Row 250 gives only “War,” foregrounding a social concern. No explicit rejection of concern appeared in this sample; this does not establish its absence from the full dataset.</p></details></article>
     </div>
+
     <div class="callout"><strong>Interpretation boundary.</strong> These results describe the people who answered this survey. The sample’s geographic concentration, small subgroups, and brief text responses limit claims about worldwide priorities or causal explanations.</div>
   </div></section>
+
   <section class="dashboard-section" id="dashboard"><div class="wrap">
     <div class="section-top"><div><p class="number">02 / TABLEAU DASHBOARD</p><h2>Explore the<br>respondents’ perspectives.</h2></div><p>The dashboard brings the survey into an interactive view. Explore respondent profiles and perceived threat seriousness, and examine how patterns differ across groups.</p></div>
     <div class="dashboard-shell"><div class="dashboard-empty" id="dashboard-placeholder"><span class="tag">INTERACTIVE VIEW</span><h3>The dashboard will appear here.</h3><p>The published Tableau view will be connected in the next portfolio update. The findings above are available now.</p></div><div class="viz-host" id="viz-host" hidden aria-label="Interactive Tableau survey dashboard"></div><noscript><p>The interactive dashboard requires JavaScript. The analysis and experiment proposal remain available on this page.</p></noscript></div>
     <div class="dashboard-links"><p class="small" id="dashboard-status" role="status">Dashboard embed pending.</p><a class="button" id="tableau-link" hidden target="_blank" rel="noopener noreferrer">Open in Tableau ↗</a></div>
+  
   </div></section>
   <section class="experiment" id="experiment"><div class="wrap">
     <div class="section-top"><div><p class="number">03 / POTENTIAL A/B TEST</p><h2>From expressed concern<br>to a measurable action.</h2></div><p><strong>Proposed study · not conducted.</strong> The survey suggests both ecological and human concerns matter. A future experiment could test whether message framing changes engagement with coastal conservation information.</p></div>
