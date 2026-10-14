@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A data analysis portfolio exploring public perceptions of climate change, oceans, and coastlines through survey analysis, Tableau, and a proposed A/B test.">
+  <meta name="theme-color" content="#123f43">
+  <title>Ocean priorities | A survey research portfolio</title>
+  <!--
+  QUICK START
+  1. Add this file as index.html to your GitHub Pages publishing folder.
+  2. Edit the SITE object near the bottom: author, tableauUrl, repoUrl, datasetUrl.
+  3. tableauUrl should be your PUBLIC VIEW link, for example:
+     https://public.tableau.com/views/YOUR_WORKBOOK/YOUR_DASHBOARD
+     Use Tableau's Share > Copy Link, not a profile or editing URL.
+  4. Review the analysis and proposed experiment text before publishing.
+  Everything except the optional Tableau dashboard is self-contained.
+  No analytics, tracking, or live experiment are implemented here.
+  -->
+  <style>
+    :root{--ink:#18383b;--muted:#506a6c;--paper:#f7f5ef;--white:#fffefa;--teal:#166b72;--mint:#dce9dc;--line:#d3dcd5;--orange:#e5aa65;--radius:16px;--max:1160px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}h1,h2,h3,p{margin-top:0}h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;line-height:1.08;letter-spacing:-.04em}h1{font-size:clamp(48px,7vw,86px);max-width:760px;margin-bottom:24px}h2{font-size:clamp(34px,4vw,52px);margin-bottom:20px}h3{font-size:20px;line-height:1.35}a{color:var(--teal);text-underline-offset:4px}a:hover{text-decoration-thickness:2px}button{font:inherit}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #c87827;outline-offset:5px}[hidden]{display:none!important}.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}.skip{position:absolute;top:-80px;left:20px;background:white;padding:12px;z-index:20}.skip:focus{top:10px}
+    header{position:sticky;top:0;z-index:10;background:rgba(247,245,239,.97);border-bottom:1px solid var(--line)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:78px}.brand{color:var(--ink);font-size:18px;font-weight:750;text-decoration:none;white-space:nowrap}.brand span{color:var(--teal);margin-right:8px}nav{display:flex;gap:28px;flex-wrap:wrap}nav a{font-size:14px;text-decoration:none;color:var(--ink)}.eyebrow{text-transform:uppercase;font-size:11px;font-weight:750;letter-spacing:.18em;color:var(--teal);margin-bottom:20px}.hero{position:relative;overflow:hidden;padding:78px 0 0}.hero-inner{position:relative;z-index:1}.lead{font-size:19px;max-width:670px;color:var(--muted)}.buttons{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0}.button{display:inline-flex;align-items:center;justify-content:center;padding:12px 20px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:650;border:1px solid var(--ink);color:var(--ink);background:transparent}.button.primary{color:white;background:var(--ink)}.button:hover{background:var(--mint);color:var(--ink)}.meta{font-size:12px;color:var(--muted);margin:26px 0 40px}.ocean-lines{position:absolute;right:-150px;top:0;width:600px;height:450px;opacity:.19;pointer-events:none}.hero-band{background:var(--ink);color:var(--white);padding:24px 0;margin-top:32px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}.stat{padding:4px 22px;border-left:1px solid #5c797a}.stat strong{display:block;font:40px/1.2 Georgia,serif}.stat span{display:block;font-size:13px;color:#d1e0dc;margin-top:8px}.stat small{color:#c0d2ce;font-size:11px}
+    section{padding:76px 0;border-bottom:1px solid var(--line)}.section-top{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:end;margin-bottom:34px}.section-top p{color:var(--muted);margin-bottom:8px}.number{font-size:12px;font-weight:750;letter-spacing:.14em;margin-bottom:12px;color:var(--teal)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px}.card p{color:var(--muted)}.small{font-size:13px;color:var(--muted)}.tag{display:inline-block;padding:4px 10px;border-radius:30px;background:var(--mint);font-size:11px;font-weight:700;letter-spacing:.04em;margin-bottom:18px}.callout{border-left:3px solid var(--teal);padding:10px 20px;margin:24px 0;color:var(--muted);background:#edf0e7}.callout strong{color:var(--ink)}.bar-row{margin:18px 0}.bar-label{display:flex;justify-content:space-between;gap:16px;font-size:13px;margin-bottom:6px}.track{height:9px;border-radius:10px;background:#e7ece6;overflow:hidden}.fill{height:100%;border-radius:10px;background:var(--teal)}.chart-note{font-size:12px;color:var(--muted);margin-top:18px}.quote{font-family:Georgia,serif;font-size:25px;color:var(--ink);line-height:1.4;margin:20px 0 10px}.quote-ref{font-size:12px;color:var(--muted)}.method{margin-top:24px;border:1px solid var(--line);border-radius:10px;padding:18px 24px;background:var(--white)}summary{cursor:pointer;font-weight:650}.method p{margin:16px 0 0;font-size:14px;color:var(--muted)}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:11px 8px;border-bottom:1px solid var(--line)}th{font-size:12px;color:var(--muted)}th:last-child,td:last-child{text-align:right}.wide{grid-column:1/-1}.theme-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.theme{border-top:2px solid var(--teal);padding-top:16px}.theme h3{font-size:16px}.theme p{font-size:14px}.dashboard-section{background:#eef2ea}.dashboard-shell{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;padding:16px}.dashboard-empty{min-height:360px;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:40px;background:repeating-linear-gradient(0deg,transparent,transparent 39px,#e9eee7 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,#e9eee7 40px)}.dashboard-empty h3{font:30px Georgia,serif;margin-bottom:10px}.dashboard-empty p{max-width:400px;color:var(--muted)}.viz-host{min-height:850px}tableau-viz{display:block;width:100%;height:850px}.dashboard-links{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-top:16px}.experiment{background:#e1e9dc}.variants{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:26px}.variant{background:var(--white);border:1px solid #bccfbd;border-radius:16px;padding:28px}.variant h3{font:30px/1.2 Georgia,serif;margin-bottom:16px}.variant .sample-cta{display:inline-block;background:var(--ink);color:white;padding:10px 16px;border-radius:6px;font-size:13px;margin-top:10px}.variant-label{font-size:11px;text-transform:uppercase;font-weight:750;letter-spacing:.12em;margin-bottom:25px}.experiment-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:34px}.experiment-grid h3{font-size:16px}.experiment-grid p{font-size:14px}.sources{font-size:13px;color:var(--muted)}.sources ul{padding-left:20px}.sources li{margin:8px 0}footer{padding:30px 0;font-size:12px;color:var(--muted)}.footer-row{display:flex;justify-content:space-between;gap:20px}.author:empty{display:none}
+    @media(max-width:800px){.section-top{grid-template-columns:1fr;gap:8px}.grid,.variants{grid-template-columns:1fr}.theme-grid,.experiment-grid{grid-template-columns:1fr;gap:16px}.hero{padding-top:48px}.ocean-lines{right:-350px}.nav{padding:16px 0;align-items:flex-start;flex-direction:column;gap:12px}nav{gap:22px}section{padding:52px 0}.stats{gap:6px}.stat{padding-left:12px}.stat strong{font-size:30px}.stat span{font-size:11px}.dashboard-links{align-items:flex-start;flex-direction:column}.card{padding:22px}.viz-host,tableau-viz{height:900px;min-height:900px}.footer-row{flex-direction:column;gap:5px}html{scroll-padding-top:130px}}
+    @media(max-width:440px){.wrap{width:calc(100% - 32px)}.stat strong{font-size:27px}.stat small{font-size:10px}nav{gap:16px}nav a{font-size:12px}.hero h1{font-size:48px}.lead{font-size:17px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    @media print{header{position:static}nav,.buttons,.dashboard-shell{display:none}section{padding:24px 0}.card,.variant{break-inside:avoid}body{background:white}.hero{padding-top:20px}}
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header><div class="wrap nav"><a class="brand" href="#top"><span aria-hidden="true">≈</span> Ocean priorities</a><nav aria-label="Main navigation"><a href="#analysis">Exploratory analysis</a><a href="#dashboard">Dashboard</a><a href="#experiment">A/B test</a><a href="#sources">Sources</a></nav></div></header>
+<main id="main">
+  <div class="hero" id="top">
+    <svg class="ocean-lines" viewBox="0 0 600 450" aria-hidden="true" fill="none" stroke="#166b72" stroke-width="1.5"><ellipse cx="390" cy="200" rx="270" ry="195"/><ellipse cx="390" cy="200" rx="240" ry="173"/><ellipse cx="390" cy="200" rx="210" ry="151"/><ellipse cx="390" cy="200" rx="180" ry="129"/><ellipse cx="390" cy="200" rx="150" ry="107"/><ellipse cx="390" cy="200" rx="120" ry="85"/></svg>
+    <div class="wrap hero-inner"><p class="eyebrow">Research portfolio · Marine &amp; coastal perceptions</p><h1>What matters most<br>when our oceans change?</h1><p class="lead">Exploring how survey respondents value oceans and coastlines, understand climate threats, and describe their concerns in their own words.</p><div class="buttons"><a class="button primary" href="#analysis">Explore the findings ↗</a><a class="button" href="#dashboard">View the dashboard</a></div><p class="meta"><span class="author" data-author></span>Survey analysis &nbsp; / &nbsp; Python &amp; Tableau &nbsp; / &nbsp; Experimental design</p></div>
+    <div class="hero-band"><div class="wrap stats"><div class="stat"><strong>709</strong><span>Survey respondents</span><small>One record per respondent</small></div><div class="stat"><strong>41</strong><span>Named countries represented</span><small>Plus one unspecified response</small></div><div class="stat"><strong>87.2%</strong><span>Rate climate change a high or very high threat</span><small>Q7 · all 709 respondents</small></div></div></div>
+  </div>
+  <section id="analysis"><div class="wrap">
+    <div class="section-top"><div><p class="number">01 / EXPLORATORY DATA ANALYSIS</p><h2>First, understand<br>who is speaking.</h2></div><p>The central question is what respondents prioritize about oceans and coastlines and the effects of climate change. The analysis connects sample composition, perceived threats, and open-text concerns.</p></div>
+    <div class="grid">
+      <article class="card"><span class="tag">Q14 · SAMPLE COMPOSITION</span><h3>A geographically concentrated sample</h3><p>The five largest country groups account for <strong>78.1%</strong> of respondents. Their perspectives shape the overall results.</p><div role="group" aria-label="Share of all 709 respondents by country; bar scale is zero to 100 percent">
+        <div class="bar-row"><div class="bar-label"><span>Italy</span><span>180 · 25.4%</span></div><div class="track" aria-hidden="true"><div class="fill" style="width:25.39%"></div></div></div>
+        <div class="bar-row"><div class="bar-label"><span>France</span><span>134 · 18.9%</span></div><div class="track" aria-hidden="true"><div class="fill" style="width:18.9%"></div></div></div>
+        <div class="bar-row"><div class="bar-label"><span>Ireland</span><span>115 · 16.2%</span></div><div class="track" aria-hidden="true"><div class="fill" style="width:16.22%"></div></div></div>
+        <div class="bar-row"><div class="bar-label"><span>United Kingdom</span><span>75 · 10.6%</span></div><div class="track" aria-hidden="true"><div class="fill" style="width:10.58%"></div></div></div>
+        <div class="bar-row"><div class="bar-label"><span>Spain</span><span>50 · 7.1%</span></div><div class="track" aria-hidden="true"><div class="fill" style="width:7.05%"></div></div></div>
+        <div class="bar-row"><div class="bar-label"><span>All other responses</span><span>155 · 21.9%</span></div><div class="track" aria-hidden="true"><div class="fill" style="width:21.86%;background:#90a99d"></div></div></div>
+      </div><p class="chart-note">Percentages use the full sample, not just the top five countries. All other responses includes the unspecified response.</p></article>
+      <article class="card"><span class="tag">Q7 · PERCEIVED THREATS</span><h3>Climate change is widely seen as serious</h3><p>Overall, <strong>618 of 709 respondents</strong> rate climate change as a high or very high threat to marine and coastal ecosystems.</p><div class="table-wrap"><table><caption class="small">High + very high ratings for climate change</caption><thead><tr><th scope="col">Sample</th><th scope="col">n</th><th scope="col">Share</th></tr></thead><tbody><tr><th scope="row">Overall</th><td>709</td><td>87.2%</td></tr><tr><th scope="row">Italy</th><td>180</td><td>88.9%</td></tr><tr><th scope="row">France</th><td>134</td><td>79.1%</td></tr><tr><th scope="row">Ireland</th><td>115</td><td>88.7%</td></tr><tr><th scope="row">United Kingdom</th><td>75</td><td>96.0%</td></tr><tr><th scope="row">Spain</th><td>50</td><td>94.0%</td></tr></tbody></table></div><p class="chart-note">Denominators include “I don’t know.” Country comparisons are descriptive; these are not representative national estimates.</p></article>
+      <article class="card wide"><span class="tag">Q5 · QUALITATIVE SAMPLE REVIEW</span><h3>Environmental concerns also have human consequences.</h3><p>Reading 60 randomly sampled records revealed recurring environmental themes and concerns about health, livelihoods, migration, and inequality. These themes can overlap within a person’s answers.</p><div class="theme-grid"><div class="theme"><h3>Water and coastal disruption</h3><p><strong>41 of 60 records · 68.3%</strong><br>Drought, flooding, sea-level rise, and erosion point to different forms of water-related disruption.</p><blockquote class="quote">“Drought and flood”</blockquote><p class="quote-ref">Excel row 321 · Q5_1</p></div><div class="theme"><h3>Biodiversity and ecosystems</h3><p><strong>27 of 60 records · 45.0%</strong><br>Loss, extinction, and habitat degradation feature alongside broader ecological change.</p><blockquote class="quote">“Habitat degradation”</blockquote><p class="quote-ref">Excel row 328 · Q5_3</p></div><div class="theme"><h3>Human and social impacts</h3><p><strong>16 of 60 records · 26.7%</strong><br>Concerns include unequal impacts and threats to wellbeing. One assignment is uncertain.</p><blockquote class="quote">“Impact on poorest”</blockquote><p class="quote-ref">Excel row 56 · Q5_3</p></div></div><details class="method"><summary>How the text sample was selected and coded</summary><p>From 706 records with at least one nonblank Q5 answer, 60 were selected without replacement using pandas <code>sample(n=60, random_state=42)</code>. All three Q5 fields were read: 153 nonblank answers in total. Each record was assigned manually reviewed, overlapping topic codes once per theme. These are assistant-assisted exploratory codes, not independently validated qualitative measurements.</p><p>The coding drew on the earlier exploratory review. One record contained only place names and was left unassigned. The ambiguous answer “Death” was included under human impacts; excluding it reduces that theme to 15/60 (25.0%). Row references count the spreadsheet header as row 1.</p><p><strong>Counterexamples:</strong> row 111 lists both “Excessive cold” and “Excessive heat,” complicating a warming-only interpretation. Row 250 gives only “War,” foregrounding a social concern. No explicit rejection of concern appeared in this sample; this does not establish its absence from the full dataset.</p></details></article>
+    </div>
+    <div class="callout"><strong>Interpretation boundary.</strong> These results describe the people who answered this survey. The sample’s geographic concentration, small subgroups, and brief text responses limit claims about worldwide priorities or causal explanations.</div>
+  </div></section>
+  <section class="dashboard-section" id="dashboard"><div class="wrap">
+    <div class="section-top"><div><p class="number">02 / TABLEAU DASHBOARD</p><h2>Explore the<br>respondents’ perspectives.</h2></div><p>The dashboard brings the survey into an interactive view. Explore respondent profiles and perceived threat seriousness, and examine how patterns differ across groups.</p></div>
+    <div class="dashboard-shell"><div class="dashboard-empty" id="dashboard-placeholder"><span class="tag">INTERACTIVE VIEW</span><h3>The dashboard will appear here.</h3><p>The published Tableau view will be connected in the next portfolio update. The findings above are available now.</p></div><div class="viz-host" id="viz-host" hidden aria-label="Interactive Tableau survey dashboard"></div><noscript><p>The interactive dashboard requires JavaScript. The analysis and experiment proposal remain available on this page.</p></noscript></div>
+    <div class="dashboard-links"><p class="small" id="dashboard-status" role="status">Dashboard embed pending.</p><a class="button" id="tableau-link" hidden target="_blank" rel="noopener noreferrer">Open in Tableau ↗</a></div>
+  </div></section>
+  <section class="experiment" id="experiment"><div class="wrap">
+    <div class="section-top"><div><p class="number">03 / POTENTIAL A/B TEST</p><h2>From expressed concern<br>to a measurable action.</h2></div><p><strong>Proposed study · not conducted.</strong> The survey suggests both ecological and human concerns matter. A future experiment could test whether message framing changes engagement with coastal conservation information.</p></div>
+    <div class="callout"><strong>Hypothesis:</strong> A community-focused message will produce a higher click-through rate to a coastal conservation guide than an ecosystem-focused message. The survey motivates this hypothesis; it does not establish which message will work better.</div>
+    <div class="variants"><article class="variant"><p class="variant-label">Version A / Ecosystem framing</p><h3>Protect the life along our coasts.</h3><p>Healthy coastal habitats support marine plants and animals. Explore ways to help protect these ecosystems.</p><span class="sample-cta">Explore coastal conservation</span></article><article class="variant"><p class="variant-label">Version B / Community framing</p><h3>Protect the communities along our coasts.</h3><p>Healthy coastal habitats support people’s wellbeing and livelihoods. Explore ways to help protect these ecosystems.</p><span class="sample-cta">Explore coastal conservation</span></article></div>
+    <p class="small">Illustrative message mockups. The call-to-action previews above are not live experiment buttons.</p>
+    <div class="experiment-grid"><article><h3>Randomize the message</h3><p>Assign eligible visitors 1:1 at the visitor level and keep their assignment consistent. Change only the framing copy; hold layout, imagery, button wording, destination, and exposure conditions constant.</p></article><article><h3>Measure engagement</h3><p>Primary outcome: the proportion of exposed visitors who click the guide link at least once during their first session. Report the absolute percentage-point difference and a 95% confidence interval. A click is an engagement proxy, not evidence of sustained conservation behavior.</p></article><article><h3>Decide before launch</h3><p>Use a pilot baseline and a meaningful minimum effect to calculate sample size (two-sided α=.05, 80% power). Predefine eligibility, bot exclusions, duration, and stopping rules. Check assignment balance and technical failures before interpreting results.</p></article></div>
+    <details class="method"><summary>What would count as a useful result?</summary><p>Report results even if inconclusive. Evaluate both uncertainty and whether the effect is large enough to matter; do not select a winner simply because its observed rate is higher. Any subgroup analysis by country or ocean-user group should be prespecified or clearly labeled exploratory.</p><p>A subsequent study could measure a stronger outcome, such as completing a conservation activity. Survey associations and this proposed click experiment answer different questions. This portfolio does not assign visitors to variants or collect experiment data.</p></details>
+  </div></section>
+  <section id="sources"><div class="wrap"><p class="number">PROJECT NOTES</p><h2>Data, decisions, and limits.</h2><div class="grid"><div class="sources"><h3>Source materials</h3><ul><li><strong>Survey_Fonsecaetal_07122022.xlsx</strong> — original survey data; 709 respondent records and 64 columns.</li><li><strong>ocean_survey.csv</strong> — analysis copy with the same response values, used in the Tableau workflow.</li><li><strong>Codebook_Fonsecaetal_24112022.txt</strong> — verified question and response-code definitions.</li><li><strong>Ocean Survey.pdf</strong> — questionnaire wording and context.</li></ul><p id="dataset-resource" hidden><a id="dataset-link" target="_blank" rel="noopener noreferrer">View the dataset source ↗</a></p></div><div class="sources"><h3>Analysis approach</h3><p>Descriptive summaries, codebook-based labeling, respondent-level percentages, and a documented sample review of open text. Multiple-choice selections are treated as selections, not rankings. “I don’t know” and nonresponse categories remain distinct.</p><p>The portfolio contains aggregate results and selected excerpts. The A/B test is a proposal; no experimental outcomes are presented.</p><p id="repo-resource" hidden><a id="repo-link" target="_blank" rel="noopener noreferrer">View the project repository ↗</a></p></div></div></div></section>
+</main>
+<footer><div class="wrap footer-row"><span>Ocean priorities · Survey research portfolio</span><span data-footer-author>Exploratory analysis / Tableau / Experimental design</span><a href="#top">Back to top ↑</a></div></footer>
+<script>
+/* EDIT THESE FOUR VALUES. Leave a URL empty to hide its link. */
+const SITE = {
+  author: "", // e.g. "Your name"
+  tableauUrl: "", // e.g. "https://public.tableau.com/views/YourWorkbook/YourDashboard"
+  repoUrl: "", // e.g. "https://github.com/your-username/your-repository"
+  datasetUrl: "" // Optional: public dataset landing page, not a private file URL
+};
+
+function safeUrl(value) {
+  if (!value.trim()) return null;
+  try { const u = new URL(value); return u.protocol === "https:" ? u : null; }
+  catch { return null; }
+}
+if (SITE.author.trim()) {
+  document.querySelector('[data-author]').textContent = SITE.author + ' · ';
+  document.querySelector('[data-footer-author]').textContent = 'A project by ' + SITE.author;
+}
+for (const [key, linkId, wrapperId] of [
+  ['repoUrl', 'repo-link', 'repo-resource'],
+  ['datasetUrl', 'dataset-link', 'dataset-resource']
+]) {
+  const u = safeUrl(SITE[key]);
+  if (u) { document.getElementById(linkId).href = u.href; document.getElementById(wrapperId).hidden = false; }
+}
+
+async function loadDashboard() {
+  const url = safeUrl(SITE.tableauUrl);
+  const status = document.getElementById('dashboard-status');
+  if (!url) return;
+  // This template targets Tableau Public. Other Tableau hosts may need authentication.
+  if (url.hostname !== 'public.tableau.com' || !url.pathname.includes('/views/')) {
+    status.textContent = 'The dashboard link is unavailable. Please check back soon.';
+    console.warn('Use a public.tableau.com/views/WORKBOOK/VIEW URL in SITE.tableauUrl.');
+    return;
+  }
+  const link = document.getElementById('tableau-link'); link.href = url.href; link.hidden = false;
+  const host = document.getElementById('viz-host');
+  let timer;
+  try {
+    status.textContent = 'Loading interactive dashboard…';
+    const { TableauViz, TableauEventType } = await import('https://public.tableau.com/javascripts/api/tableau.embedding.3.latest.min.js');
+    const viz = new TableauViz();
+    viz.src = url.href;
+    viz.setAttribute('width', '100%'); viz.setAttribute('height', '850');
+    viz.setAttribute('toolbar', 'bottom');
+    const fallback = () => { status.textContent = 'If the dashboard does not load, use “Open in Tableau” to view it directly.'; };
+    viz.addEventListener(TableauEventType.FirstInteractive, () => {
+      clearTimeout(timer); status.textContent = 'Explore the dashboard controls, or open the full view in Tableau.';
+    });
+    viz.addEventListener('vizloaderror', fallback);
+    host.appendChild(viz); host.hidden = false;
+    document.getElementById('dashboard-placeholder').hidden = true;
+    timer = setTimeout(fallback, 25000);
+  } catch (error) {
+    clearTimeout(timer);
+    status.textContent = 'The dashboard could not load here. Use “Open in Tableau” to view it directly.';
+    console.warn('Tableau embed unavailable:', error);
+  }
+}
+loadDashboard();
+</script>
+</body>
+</html>
